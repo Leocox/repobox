@@ -1,0 +1,104 @@
+# DRAW RECTS
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <style>
+            canvas {
+                background: #ffffff;
+                cursor: pointer;
+                margin-left: 10px;
+                margin-top: 10px;
+                -webkit-box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+                -moz-box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+                box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+            }
+        </style>
+    </head>
+	
+    <body>
+        <canvas id='myCanvas' width='600' height='300'>
+            Canvas not supported
+        </canvas>
+        
+		<p id="status"> Status </p>
+		
+		
+		<script>
+            var canvas = document.getElementById('myCanvas');
+			var status = document.getElementById('status');
+            var context = canvas.getContext('2d');
+			var xMax = 600;
+			var yMax = 300;
+			var epsilon=20;
+            
+			var colors = ["aqua",
+						"Aquamarine",			
+						"blue", 
+						"BlueViolet",
+						"coral",
+						"DarkCyan",
+						"DarkViolet", 
+						"DarkMagenta", 
+						"darkBlue", 
+						"GoldenRod", 
+						"green",
+						"red",						
+						"white", 
+						"yellow"];
+			
+			if (context) {
+				//context.moveTo(epsilon, epsilon);
+			} else {
+				alert("Context error");
+			
+			}
+			
+			context.font = '12px serif';
+			
+			function draw() {
+				
+				// X START
+				expression = Math.floor(xMax*Math.random()-epsilon);
+				xRand = expression > epsilon ? expression : epsilon;
+				
+				// Y START
+				expression = Math.floor(yMax*Math.random()-epsilon);
+				yRand = expression > epsilon ? expression : epsilon;
+				
+				// WIDTH
+				w = Math.floor(epsilon + 2*epsilon*Math.random());
+								
+				
+				// RECT COLOR
+				index = Math.floor(Math.random()*colors.length);
+				context.fillStyle = colors[index];
+								
+				// DRAW RECT
+				context.fillRect(xRand, yRand, w, w);	
+			
+				
+				// TEXT
+				context.fillStyle = "black";
+				context.fillText(colors[index], xRand, yRand+10);
+
+			
+				
+				
+				
+				
+			}
+			
+			// For debug
+			//status.innerHTML=document.body.clientHeight;
+							
+			
+			id = setInterval(function () {draw(); }, 200);   
+			
+			
+			
+			
+        </script>
+    </body>
+</html>
